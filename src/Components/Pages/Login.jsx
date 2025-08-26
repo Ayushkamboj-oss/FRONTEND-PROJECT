@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 function Login() {
   const [user, setUser] = useState({ username: "", password: "" });
   const [successful, setSuccessful] = useState(false);
+  const [unsuccessful, setUnsuccessful] = useState(false);
   const navigate = useNavigate();
   const todos = useSelector((state) => state.todos);
 
@@ -14,7 +15,7 @@ function Login() {
       (todo) =>
         todo.Name === user.username && todo.Password === user.password);
 
-    check ? setSuccessful(true) : setSuccessful(false)
+    check ? setSuccessful(true) : setUnsuccessful(true)
   };
 
   return (
@@ -73,7 +74,7 @@ function Login() {
           >
             Submit
           </button>
-          {!successful && (<h1 className="text-center text-red-400 font-semibold">
+          {unsuccessful && (<h1 className="text-center text-red-400 font-semibold">
             ❌ Invalid username or password
           </h1>
           )}
