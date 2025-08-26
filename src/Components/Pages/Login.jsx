@@ -13,7 +13,8 @@ function Login() {
     const check = todos.find(
       (todo) =>
         todo.Name === user.username && todo.Password === user.password);
-      setSuccessful(true)
+
+    check ? setSuccessful(true) : setSuccessful(false)
   };
 
   return (
@@ -72,6 +73,10 @@ function Login() {
           >
             Submit
           </button>
+          {!successful && (<h1 className="text-center text-red-400 font-semibold">
+            ❌ Invalid username or password
+          </h1>
+          )}
 
           <button
             type="button"
